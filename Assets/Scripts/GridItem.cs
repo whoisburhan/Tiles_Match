@@ -12,8 +12,9 @@ namespace GS.TilesMatch
         [SerializeField] private Button GridItemButton;
         [SerializeField] private Image GridItemBorder;
         [SerializeField] private Image GridItemImg;
+        [SerializeField] private Image BorderColorIndicator;
 
-        [SerializeField] private float tilesFlipInterval = 1f;
+        [SerializeField] private float tilesFlipInterval = .5f;
 
         public int ItemNo; //{ get; set; }
 
@@ -23,12 +24,14 @@ namespace GS.TilesMatch
         {
             GameManager.OnHideAllTiles += HideTiles;
             GameManager.OnShowAllTiles += ShowTiles;
+            GameManager.OnReset += Reset;
         }
 
         private void OnDisable()
         {
             GameManager.OnHideAllTiles -= HideTiles;
             GameManager.OnShowAllTiles -= ShowTiles;
+            GameManager.OnReset -= Reset;
         }
 
         private void Start()
@@ -71,6 +74,8 @@ namespace GS.TilesMatch
 
         public void HideTiles(bool imediateAction = false)
         {
+            BorderColorIndicator.fillAmount = 0f;
+
             if (!isHidden)
             {
                 float _duration = imediateAction ? 0f : tilesFlipInterval;
@@ -83,6 +88,7 @@ namespace GS.TilesMatch
                         GridItemButton.interactable = true;
                         isHidden = true;
                         Debug.Log("Tiles Hide");
+                        GameManager.Instance.IsAbleToRefresh = true;
                     });
                 });
             }
@@ -92,6 +98,8 @@ namespace GS.TilesMatch
         {
             if (isHidden)
             {
+                isHidden = false;
+                GameManager.Instance.IsAbleToRefresh = false;
                 float _duration = imediateAction ? 0f : tilesFlipInterval;
                 GridItemButton.interactable = false;
                 transform.DORotate(new Vector3(0f, 90f, 0f), _duration).OnComplete(() =>
@@ -100,16 +108,25 @@ namespace GS.TilesMatch
                     transform.DORotate(new Vector3(0f, 0f, 0f), _duration).OnComplete(() =>
                     {
                         GridItemButton.interactable = false;
-                        isHidden = false;
+                        
                     });
                 });
+
+                BorderColorIndicator.color = Color.blue;
+                BorderColorIndicator.DOFillAmount(1, 1f);
             }
+        }
+
+        public void ChangeBorderColorIndicatorColor(Color _color)
+        {
+            BorderColorIndicator.DOColor(_color, 0.35f);
         }
 
         public void Reset()
         {
             ItemNo = -1;
             GridItemImg.sprite = null;
+            transform.DOScale(0.1f, 0.5f).OnComplete(()=> { this.gameObject.SetActive(false); });
         }
     }
 }

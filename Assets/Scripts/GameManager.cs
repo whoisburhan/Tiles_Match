@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace GS.TilesMatch
         public static GameManager Instance { get; private set; }
         public static event Action<bool> OnHideAllTiles;
         public static event Action<bool> OnShowAllTiles;
+        public static event Action OnReset;
 
         [Header("Items Sprite")]
         [SerializeField] private List<Sprite> itemSprites = new List<Sprite>();
@@ -26,12 +28,16 @@ namespace GS.TilesMatch
         [SerializeField] private List<GridItem> gridItemRow4;
         [SerializeField] private List<GridItem> gridItemRow5;
 
+
         private List<List<GridItem>> gridItemRows = new List<List<GridItem>>();
 
         private int inputCounter = 0;
         private GridItem tilesOne, tilesTwo;
 
+        private int failedAttempt, uniqueTiles, countDownTimer;
+
         [HideInInspector] public bool IsPlay = true;
+        [HideInInspector] public bool IsAbleToRefresh = false;
 
         private void Awake()
         {
@@ -52,22 +58,75 @@ namespace GS.TilesMatch
             gridItemRows.Add(gridItemRow4);
             gridItemRows.Add(gridItemRow5);
 
+            Refresh();
 
-            GenerateLevel(6);
-
-            StartCoroutine( WaitTime(() =>
-            {
-                OnHideAllTiles?.Invoke(false);
-                Debug.Log("Working 2");
-            }));
+            /*StartCoroutine(WaitTime(() =>
+           {
+               OnHideAllTiles?.Invoke(false);
+               Debug.Log("Working 2");
+           }));*/
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && IsAbleToRefresh)
             {
-                GenerateLevel(6);
+                // GenerateLevel(6);
+                Refresh();
             }
+        }
+
+        private void NewGame()
+        {
+            tilesOne = tilesTwo = null;
+            inputCounter = 0;
+
+            IsPlay = false;
+            int _n = Random.Range(2, 7);
+            int _showTilesTime = 15;
+
+            uniqueTiles = _n * 2;
+            failedAttempt = 0;
+
+            // Activate & Deactivate Rows According to level
+            for (int i = 0; i < gridItemRows.Count; i++)
+            {
+                for (int j = 0; j < gridItemRow0.Count; j++)
+                {
+                    if (i < _n)
+                    {
+                        gridItemRows[i][j].gameObject.SetActive(true);
+                        gridItemRows[i][j].transform.DOScale(1f, 0.5f);
+                    }
+                    else
+                    {
+                        gridItemRows[i][j].gameObject.SetActive(false);
+                    }
+                }
+            }
+
+            // Generate Tiles
+            GenerateLevel(_n);
+            OnHideAllTiles?.Invoke(true);
+
+            StartCoroutine(WaitTime(() =>
+            {
+            OnShowAllTiles?.Invoke(false);
+            StartCoroutine(WaitTime(() => { OnHideAllTiles?.Invoke(false); }, 1.6f + _showTilesTime));
+            StartCoroutine(WaitTime(()=>{ UI_Manager.Instance.CountDownTimerAnimation(_showTilesTime); }, 1f));
+                
+            }, 0.5f));
+
+            IsPlay = true;
+        }
+
+        public void Refresh()
+        {
+            OnReset?.Invoke();
+            StartCoroutine(WaitTime(() => {
+                NewGame();
+                IsAbleToRefresh = false;
+            },0.6f));
         }
 
         public Sprite GetItemSprite(int index)
@@ -88,6 +147,7 @@ namespace GS.TilesMatch
         private void GenerateLevel(int gridRow)
         {
             int _gridItemVariation = gridRow * 2;
+            UI_Manager.Instance.SetTilesLeft(_gridItemVariation.ToString());
 
             List<int> _selectedGridItemVariationList = new List<int>();
 
@@ -153,28 +213,57 @@ namespace GS.TilesMatch
                 {
                     // Add some Score
                     Debug.Log("Tiles Matched!!");
-                    StartCoroutine(WaitTime(() => {
-                        tilesOne.gameObject.SetActive(false);
-                        tilesTwo.gameObject.SetActive(false);
-                        IsPlay = true;
+
+                    StartCoroutine(WaitTime(() =>
+                    {
+                        tilesOne.ChangeBorderColorIndicatorColor(Color.green);
+                        tilesTwo.ChangeBorderColorIndicatorColor(Color.green);
+                    }, 1f));
+
+
+
+                    StartCoroutine(WaitTime(() =>
+                    {
+                        tilesOne.transform.DOScale(0.1f, 0.5f).OnComplete(() =>
+                        {
+                            tilesOne.gameObject.SetActive(false);
+                            uniqueTiles--;
+                            UI_Manager.Instance.SetTilesLeft(uniqueTiles.ToString(), tilesOne.transform, tilesTwo.transform);
+
+                            IsPlay = IsAbleToRefresh = true;
+                        });
+                        tilesTwo.transform.DOScale(0.1f, 0.5f).OnComplete(() => { tilesTwo.gameObject.SetActive(false); });
+
                     }, 2f));
-                    
+
                 }
                 else
                 {
                     Debug.Log("HideTiles");
-                    StartCoroutine(WaitTime(()=> {
+
+                    failedAttempt++;
+
+                    StartCoroutine(WaitTime(() =>
+                    {
+                        tilesOne.ChangeBorderColorIndicatorColor(Color.red);
+                        tilesTwo.ChangeBorderColorIndicatorColor(Color.red);
+                        UI_Manager.Instance.SetWrongAttempt(failedAttempt.ToString());
+                    }, 1f));
+
+                    StartCoroutine(WaitTime(() =>
+                    {
                         tilesOne.HideTiles();
                         tilesTwo.HideTiles();
-                        StartCoroutine(WaitTime(()=> { IsPlay = true; },1f));2
-                    },2f));
-                   
+                        StartCoroutine(WaitTime(() => { IsPlay = true; }, 2f));
+                    }, 3f));
+
                 }
 
                 inputCounter = 0;
             }
 
         }
+
 
         private void Reset()
         {
@@ -189,5 +278,7 @@ namespace GS.TilesMatch
             Debug.Log("Working");
             taskToComplete();
         }
+
+        
     }
 }
