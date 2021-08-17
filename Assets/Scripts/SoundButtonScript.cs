@@ -38,7 +38,7 @@ namespace GS.TilesMatch
         private void Animate(Color _color, bool mute)
         {
             button.interactable = false;
-            circle.DOMoveX(circle.transform.position.x * -1f, 0.2f).OnComplete(() => 
+            circle.DOMoveX(!mute? 45.5f : -45.5f, 0.2f).OnComplete(() => 
             {
                 audioSource.mute = mute;
                 button.interactable = true;
