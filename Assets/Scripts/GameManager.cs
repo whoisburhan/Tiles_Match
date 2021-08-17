@@ -31,6 +31,8 @@ namespace GS.TilesMatch
 
         private List<List<GridItem>> gridItemRows = new List<List<GridItem>>();
 
+        public int InputCounter { get { return inputCounter; } }
+
         private int inputCounter = 0;
         private GridItem tilesOne, tilesTwo;
 
@@ -78,6 +80,8 @@ namespace GS.TilesMatch
 
         private void NewGame()
         {
+            UI_Manager.Instance.SetHitButtonVisibility(false);
+
             tilesOne = tilesTwo = null;
             inputCounter = 0;
 
@@ -127,6 +131,13 @@ namespace GS.TilesMatch
                 NewGame();
                 IsAbleToRefresh = false;
             },0.6f));
+        }
+
+        public void ShowHint(int _showTilesTime)
+        {
+            OnShowAllTiles?.Invoke(false);
+            StartCoroutine(WaitTime(() => { OnHideAllTiles?.Invoke(false); }, 1.6f + _showTilesTime));
+            StartCoroutine(WaitTime(() => { UI_Manager.Instance.CountDownTimerAnimation(_showTilesTime); }, 1f));
         }
 
         public Sprite GetItemSprite(int index)
@@ -202,12 +213,14 @@ namespace GS.TilesMatch
             {
                 tilesOne = hittedTiles;
                 Debug.Log("1");
+                UI_Manager.Instance.SetHitButtonVisibility(false);
             }
             else if (inputCounter >= 2)
             {
                 IsPlay = false;
                 tilesTwo = hittedTiles;
                 Debug.Log("2");
+
 
                 if (tilesOne.ItemNo == tilesTwo.ItemNo)
                 {
@@ -231,6 +244,7 @@ namespace GS.TilesMatch
                             UI_Manager.Instance.SetTilesLeft(uniqueTiles.ToString(), tilesOne.transform, tilesTwo.transform);
 
                             IsPlay = IsAbleToRefresh = true;
+                            UI_Manager.Instance.SetHitButtonVisibility(true);
                         });
                         tilesTwo.transform.DOScale(0.1f, 0.5f).OnComplete(() => { tilesTwo.gameObject.SetActive(false); });
 

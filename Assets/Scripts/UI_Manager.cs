@@ -25,6 +25,9 @@ namespace GS.TilesMatch
         [Header("Transform")]
         [SerializeField] private CanvasGroup PausePanelCanvas;
 
+        [Header("Buttons")]
+        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton;
+
         private void Awake()
         {
             Instance = this;
@@ -40,6 +43,10 @@ namespace GS.TilesMatch
             GameManager.OnReset -= Reset;
         }
 
+        private void Start()
+        {
+            hintButton.onClick.AddListener(() => { Hint(); });
+        }
 
         #region Button Func
 
@@ -59,8 +66,23 @@ namespace GS.TilesMatch
 
             PausePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => { PausePanelCanvas.blocksRaycasts = false; });
         }
+
+        public void Hint()
+        {
+            GameManager.Instance.ShowHint(5);
+        }
+
         #endregion
 
+
+        public void SetHitButtonVisibility(bool _isVisible)
+        {
+            if(hintButton != null)
+            {
+                Debug.Log("OK");
+                hintButton.interactable = _isVisible;
+            }
+        }
 
         public void CountDownTimerAnimation(int _countDownTime)
         {

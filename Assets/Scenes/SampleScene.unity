@@ -656,7 +656,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2146770784}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1648,7 +1648,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2146770784}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4697,16 +4697,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021010533}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2146770784}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -228.3, y: 239}
+  m_AnchoredPosition: {x: -231.8, y: 239.8}
   m_SizeDelta: {x: 52, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1021010535
@@ -7119,6 +7119,10 @@ MonoBehaviour:
   smallTilesOne: {fileID: 3949041781417224577}
   smallTilesTwo: {fileID: 2090028461}
   PausePanelCanvas: {fileID: 405170512}
+  homeButton: {fileID: 0}
+  shopButton: {fileID: 0}
+  hintButton: {fileID: 1459747947}
+  retryButton: {fileID: 0}
 --- !u!114 &1757674349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 580307753184525265, guid: 824fa89a4ae2b594b8a8ecd49b786067, type: 3}
@@ -8681,9 +8685,9 @@ RectTransform:
   - {fileID: 1173991486}
   - {fileID: 1552782472}
   - {fileID: 791255382}
-  - {fileID: 1021010534}
   - {fileID: 148907053}
   - {fileID: 332289379}
+  - {fileID: 1021010534}
   - {fileID: 1324842111}
   - {fileID: 889426246}
   - {fileID: 800377220}

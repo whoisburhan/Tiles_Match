@@ -89,6 +89,8 @@ namespace GS.TilesMatch
                         isHidden = true;
                         Debug.Log("Tiles Hide");
                         GameManager.Instance.IsAbleToRefresh = true;
+                        if(!imediateAction)
+                            UI_Manager.Instance.SetHitButtonVisibility(true);
                     });
                 });
             }
