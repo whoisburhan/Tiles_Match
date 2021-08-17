@@ -67,6 +67,7 @@ namespace GS.TilesMatch
                OnHideAllTiles?.Invoke(false);
                Debug.Log("Working 2");
            }));*/
+
         }
 
         private void Update()
@@ -130,6 +131,7 @@ namespace GS.TilesMatch
             StartCoroutine(WaitTime(() => {
                 NewGame();
                 IsAbleToRefresh = false;
+                UI_Manager.Instance.SetRefreshButtonVisibility(false);
             },0.6f));
         }
 
@@ -244,7 +246,6 @@ namespace GS.TilesMatch
                             UI_Manager.Instance.SetTilesLeft(uniqueTiles.ToString(), tilesOne.transform, tilesTwo.transform);
 
                             IsPlay = IsAbleToRefresh = true;
-                            UI_Manager.Instance.SetHitButtonVisibility(true);
                         });
                         tilesTwo.transform.DOScale(0.1f, 0.5f).OnComplete(() => { tilesTwo.gameObject.SetActive(false); });
 

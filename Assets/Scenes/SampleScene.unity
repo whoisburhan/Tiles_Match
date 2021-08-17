@@ -7122,7 +7122,7 @@ MonoBehaviour:
   homeButton: {fileID: 0}
   shopButton: {fileID: 0}
   hintButton: {fileID: 1459747947}
-  retryButton: {fileID: 0}
+  retryButton: {fileID: 115242424}
 --- !u!114 &1757674349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 580307753184525265, guid: 824fa89a4ae2b594b8a8ecd49b786067, type: 3}

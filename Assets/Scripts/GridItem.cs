@@ -89,7 +89,9 @@ namespace GS.TilesMatch
                         isHidden = true;
                         Debug.Log("Tiles Hide");
                         GameManager.Instance.IsAbleToRefresh = true;
-                        if(!imediateAction)
+                        UI_Manager.Instance.SetRefreshButtonVisibility(true);
+
+                        if (!imediateAction)
                             UI_Manager.Instance.SetHitButtonVisibility(true);
                     });
                 });
@@ -102,6 +104,7 @@ namespace GS.TilesMatch
             {
                 isHidden = false;
                 GameManager.Instance.IsAbleToRefresh = false;
+                UI_Manager.Instance.SetRefreshButtonVisibility(false);
                 float _duration = imediateAction ? 0f : tilesFlipInterval;
                 GridItemButton.interactable = false;
                 transform.DORotate(new Vector3(0f, 90f, 0f), _duration).OnComplete(() =>

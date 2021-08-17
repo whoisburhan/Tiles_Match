@@ -46,6 +46,10 @@ namespace GS.TilesMatch
         private void Start()
         {
             hintButton.onClick.AddListener(() => { Hint(); });
+            retryButton.onClick.AddListener(() => 
+            {
+                 GameManager.Instance.Refresh();
+            });
         }
 
         #region Button Func
@@ -84,6 +88,14 @@ namespace GS.TilesMatch
             }
         }
 
+        public void SetRefreshButtonVisibility(bool _isVisible)
+        {
+            if (retryButton != null)
+            {
+                Debug.Log("OK");
+                retryButton.interactable = _isVisible;
+            }
+        }
         public void CountDownTimerAnimation(int _countDownTime)
         {
             countDownTimerText.gameObject.SetActive(true);
@@ -116,6 +128,7 @@ namespace GS.TilesMatch
             _sequence.Append(smallTilesOne.transform.DOMove(uniqueTilesLeftBorder.transform.position, .5f).OnComplete(() => {
                 smallTilesOne.gameObject.SetActive(false);
                 uniqueTilesLeftText.text = _tilesText;
+
 
             }));
             smallTilesTwo.transform.DOMove(uniqueTilesLeftBorder.transform.position, .5f).OnComplete(() => {
