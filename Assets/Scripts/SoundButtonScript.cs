@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,10 @@ namespace GS.TilesMatch
         [SerializeField] private RectTransform circle;
 
         [Header("Image")]
-        [SerializeField] private Image ButtonUIImg;
+        [SerializeField] private Image buttonUIImg;
+
+        [Header("AudioSource")]
+        [SerializeField] private AudioSource audioSource;
 
         private Button button;
 
@@ -29,16 +31,20 @@ namespace GS.TilesMatch
         {
             button.onClick.AddListener(() => 
             {
-                if(circle.position.x > 0f)
-                {
-
-                }
+                Animate(audioSource.mute ? unMuteColor : muteCOlor, !audioSource.mute);
             });
         }
 
-        private void Animate()
+        private void Animate(Color _color, bool mute)
         {
+            button.interactable = false;
+            circle.DOMoveX(circle.transform.position.x * -1f, 0.2f).OnComplete(() => 
+            {
+                audioSource.mute = mute;
+                button.interactable = true;
+            });
 
+            buttonUIImg.DOColor(_color, 0.2f);
         }
     }
 }
