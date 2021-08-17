@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: daf29e3fbd90d3c4081a2bb95635a251
+guid: f4fdc88aaf748c846aa76876a8daaae8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 55582143158522339
-    second: PausePanel_0
+      213: -2476731559310463440
+    second: crossButton_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 822, y: 1397, z: 154, w: 419}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -118,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PausePanel_0
+      name: crossButton_0
       rect:
         serializedVersion: 2
-        x: 187
-        y: 462
-        width: 703
-        height: 1038
+        x: 832
+        y: 1407
+        width: 86
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e191da2aa775c000800000000000000
-      internalID: 55582143158522339
+      spriteID: 03eec43e4c1e0add0800000000000000
+      internalID: -2476731559310463440
       vertices: []
       indices: 
       edges: []
