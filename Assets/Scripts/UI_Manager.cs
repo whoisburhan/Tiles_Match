@@ -22,6 +22,9 @@ namespace GS.TilesMatch
         [Header("GameObjects")]
         [SerializeField] private GameObject smallTilesOne, smallTilesTwo;
 
+        [Header("Transform")]
+        [SerializeField] private CanvasGroup PausePanelCanvas;
+
         private void Awake()
         {
             Instance = this;
@@ -36,6 +39,27 @@ namespace GS.TilesMatch
         {
             GameManager.OnReset -= Reset;
         }
+
+
+        #region Button Func
+
+        public void Pause()
+        {
+            PausePanelCanvas.DOFade(1f, 0.3f);
+
+            Sequence _sequence = DOTween.Sequence();
+            _sequence.Append(PausePanelCanvas.transform.DOScale(new Vector3(1.1f,1.1f,1.1f),0.25f));
+            _sequence.Append(PausePanelCanvas.transform.DOScale(Vector3.one, 0.05f));
+            _sequence.OnComplete(() => { PausePanelCanvas.blocksRaycasts = true; });
+        }
+
+        public void Resume()
+        {
+            PausePanelCanvas.DOFade(0f, 0.3f);
+
+            PausePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => { PausePanelCanvas.blocksRaycasts = false; });
+        }
+        #endregion
 
 
         public void CountDownTimerAnimation(int _countDownTime)
@@ -117,5 +141,6 @@ namespace GS.TilesMatch
         {
             uniqueTilesLeftText.text = wrongAttemptText.text = "0";
         }
+
     }
 }
