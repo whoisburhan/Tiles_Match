@@ -128,7 +128,8 @@ namespace GS.TilesMatch
             _sequence.Append(smallTilesOne.transform.DOMove(uniqueTilesLeftBorder.transform.position, .5f).OnComplete(() => {
                 smallTilesOne.gameObject.SetActive(false);
                 uniqueTilesLeftText.text = _tilesText;
-
+                UI_Manager.Instance.SetHitButtonVisibility(true);
+                UI_Manager.Instance.SetRefreshButtonVisibility(true);
 
             }));
             smallTilesTwo.transform.DOMove(uniqueTilesLeftBorder.transform.position, .5f).OnComplete(() => {
