@@ -7924,6 +7924,14 @@ MonoBehaviour:
   shopButton: {fileID: 0}
   hintButton: {fileID: 1459747947}
   retryButton: {fileID: 115242424}
+  nextLevelButton: {fileID: 1308576936}
+  starSprites:
+  - {fileID: 2915312094077438397, guid: d678c32fa4dde64499e65af9309e586a, type: 3}
+  - {fileID: -7130131176299115266, guid: d678c32fa4dde64499e65af9309e586a, type: 3}
+  starImages:
+  - {fileID: 1911870092}
+  - {fileID: 696087289}
+  - {fileID: 2112502207}
 --- !u!114 &1757674349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 580307753184525265, guid: 824fa89a4ae2b594b8a8ecd49b786067, type: 3}

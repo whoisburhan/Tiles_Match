@@ -28,7 +28,11 @@ namespace GS.TilesMatch
         [SerializeField] private CanvasGroup GameCompletePanelCanvas;
 
         [Header("Buttons")]
-        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton;
+        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton;
+
+        [Header("Star Image")]
+        [SerializeField] private Sprite[] starSprites;
+        [SerializeField] private Image[] starImages;
 
         private void Awake()
         {
@@ -52,6 +56,8 @@ namespace GS.TilesMatch
             {
                  GameManager.Instance.Refresh();
             });
+
+            nextLevelButton.onClick.AddListener(()=> { NextLevel(); });
         }
 
         private void CheckForLevelComplete()
@@ -80,6 +86,12 @@ namespace GS.TilesMatch
 
             GameCompletePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => { 
                 GameCompletePanelCanvas.blocksRaycasts = false;
+                
+                foreach(Image _img in starImages)
+                {
+                    _img.sprite = starSprites[0];
+                }
+
                 GameManager.Instance.CurrentLevelNo++;
                 GameManager.Instance.NewGame();
                 OnNextLevel?.Invoke();
