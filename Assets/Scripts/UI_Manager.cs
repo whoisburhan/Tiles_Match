@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace GS.TilesMatch
 
         [Header("Transform")]
         [SerializeField] private CanvasGroup PausePanelCanvas;
+        [SerializeField] private CanvasGroup GameCompletePanelCanvas;
 
         [Header("Buttons")]
         [SerializeField] private Button homeButton, shopButton, hintButton, retryButton;
@@ -54,6 +56,24 @@ namespace GS.TilesMatch
 
         #region Button Func
 
+        public void GameCompleteMenu()
+        {
+            GameCompletePanelCanvas.DOFade(1f, 0.3f);
+
+            Sequence _sequence = DOTween.Sequence();
+            _sequence.Append(GameCompletePanelCanvas.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.25f));
+            _sequence.Append(GameCompletePanelCanvas.transform.DOScale(Vector3.one, 0.05f));
+            _sequence.OnComplete(() => { GameCompletePanelCanvas.blocksRaycasts = true; });
+        }
+
+        public void NextLevel(Action OnNextLevel = null)
+        {
+            GameCompletePanelCanvas.DOFade(0f, 0.3f);
+
+            GameCompletePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => { 
+                GameCompletePanelCanvas.blocksRaycasts = false;
+            });
+        }
         public void Pause()
         {
             PausePanelCanvas.DOFade(1f, 0.3f);
