@@ -154,12 +154,12 @@ TextureImporter:
       name: Lovepik_com-832691641-Cartoon fruit vegetable gradient icon element_0
       rect:
         serializedVersion: 2
-        x: 446
-        y: 4401
-        width: 969
+        x: 351
+        y: 4424
+        width: 1125
         height: 1125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,12 +175,12 @@ TextureImporter:
       name: Lovepik_com-832691641-Cartoon fruit vegetable gradient icon element_1
       rect:
         serializedVersion: 2
-        x: 1782
-        y: 4401
-        width: 870
+        x: 1756
+        y: 4414
+        width: 891
         height: 891
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: Lovepik_com-832691641-Cartoon fruit vegetable gradient icon element_2
       rect:
         serializedVersion: 2
-        x: 3049
-        y: 4411
-        width: 807
+        x: 2937
+        y: 4439
+        width: 1049
         height: 1049
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,11 +218,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 412
-        y: 3030
+        y: 2947
         width: 1137
-        height: 880
+        height: 1137
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,12 +238,12 @@ TextureImporter:
       name: Lovepik_com-832691641-Cartoon fruit vegetable gradient icon element_4
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 3019
-        width: 802
+        x: 1627
+        y: 3032
+        width: 1114
         height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,11 +260,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2763
-        y: 3130
+        y: 2910
         width: 1136
-        height: 658
+        height: 1136
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -281,11 +281,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 401
-        y: 1582
+        y: 1499
         width: 1058
-        height: 869
+        height: 1058
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -301,12 +301,12 @@ TextureImporter:
       name: Lovepik_com-832691641-Cartoon fruit vegetable gradient icon element_7
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 1582
-        width: 713
+        x: 1555
+        y: 1613
+        width: 1115
         height: 1115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -323,11 +323,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2997
-        y: 1593
+        y: 1584
         width: 892
-        height: 813
+        height: 892
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -344,11 +344,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 345
-        y: 311
+        y: 141
         width: 1204
-        height: 848
+        height: 1204
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -365,11 +365,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1793
-        y: 356
+        y: 255
         width: 971
-        height: 687
+        height: 971
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -385,12 +385,12 @@ TextureImporter:
       name: Lovepik_com-832691641-Cartoon fruit vegetable gradient icon element_11
       rect:
         serializedVersion: 2
-        x: 3053
+        x: 3015
         y: 312
-        width: 869
+        width: 891
         height: 891
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
