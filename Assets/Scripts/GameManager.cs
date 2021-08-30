@@ -253,6 +253,7 @@ namespace GS.TilesMatch
 
                     StartCoroutine(WaitTime(() =>
                     {
+                        if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 3);
                         tilesOne.transform.DOScale(0.1f, 0.5f).OnComplete(() =>
                         {
                             tilesOne.gameObject.SetActive(false);

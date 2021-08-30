@@ -9,3 +9,5 @@ Sound:
 1. https://freesound.org/people/JustinBW/sounds/80921/	Star Sound
 2. https://freesound.org/people/NenadSimic/sounds/171697/	Tiles Hit Sound
 3. https://freesound.org/people/Werra/sounds/232130/  MisMatched Tiles
+4. https://freesound.org/people/shinephoenixstormcrow/sounds/337049/ Matched Tiles
+5. https://freesound.org/people/elijahdanie/sounds/487436/ Level Complete

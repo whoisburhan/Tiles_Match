@@ -7129,6 +7129,10 @@ MonoBehaviour:
   backgroundClip: []
   sounds:
   - {fileID: 8300000, guid: 50b994086df7d694c94797da3adf9eee, type: 3}
+  - {fileID: 8300000, guid: a4fc88cf77c12724cb2b5e220fad217f, type: 3}
+  - {fileID: 8300000, guid: c6ebf578906c8604880a51865541173e, type: 3}
+  - {fileID: 8300000, guid: 4da332be8f1ac7e4d878253f7beaaae8, type: 3}
+  - {fileID: 8300000, guid: db255315438052645a91e206d40f68cd, type: 3}
 --- !u!1 &1505014443
 GameObject:
   m_ObjectHideFlags: 0
@@ -8669,7 +8673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7130131176299115266, guid: d678c32fa4dde64499e65af9309e586a, type: 3}
+  m_Sprite: {fileID: 2915312094077438397, guid: d678c32fa4dde64499e65af9309e586a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -94,15 +94,18 @@ namespace GS.TilesMatch
             {
                 case 1:
                     StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
+                    StartCoroutine(Delay(()=> { if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4); },0.5f));
                     break;
                 case 2:
                     StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
                     StartCoroutine(Delay(() => { StarShow(1); }, 0.5f));
+                    StartCoroutine(Delay(() => { if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4); }, 0.75f));
                     break;
                 case 3:
                     StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
                     StartCoroutine(Delay(() => { StarShow(1); }, 0.5f));
                     StartCoroutine(Delay(() => { StarShow(2); }, 0.75f));
+                    StartCoroutine(Delay(() => { if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4); }, 1.0f));
                     break;
             }
         }
@@ -112,10 +115,7 @@ namespace GS.TilesMatch
             if(x >= 0 && x < starImages.Length)
             {
                 starImages[x].sprite = starSprites[1];
-                if(AudioManager.Instance != null)
-                {
-                    AudioManager.Instance.AudioChangeFunc(0, 0);
-                }
+                if(AudioManager.Instance != null)   AudioManager.Instance.AudioChangeFunc(0, 0);
             }
         }
 
@@ -135,6 +135,7 @@ namespace GS.TilesMatch
 
                 GameManager.Instance.CurrentLevelNo++;
                 GameManager.Instance.NewGame();
+                Reset();
                 OnNextLevel?.Invoke();
             });
         }
