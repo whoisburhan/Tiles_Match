@@ -56,6 +56,7 @@ namespace GS.TilesMatch
 
         private void OnItemClick()
         {
+            if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 1);
             ShowTiles();
             GameManager.Instance.OnTilesHit(this);
 

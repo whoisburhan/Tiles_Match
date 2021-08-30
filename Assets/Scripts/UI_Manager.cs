@@ -68,8 +68,6 @@ namespace GS.TilesMatch
             }
         }
 
-        #region Button Func
-
         public void GameCompleteMenu()
         {
             GameCompletePanelCanvas.DOFade(1f, 0.3f);
@@ -77,8 +75,51 @@ namespace GS.TilesMatch
             Sequence _sequence = DOTween.Sequence();
             _sequence.Append(GameCompletePanelCanvas.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.25f));
             _sequence.Append(GameCompletePanelCanvas.transform.DOScale(Vector3.one, 0.05f));
-            _sequence.OnComplete(() => { GameCompletePanelCanvas.blocksRaycasts = true; });
+            _sequence.OnComplete(() => { 
+                GameCompletePanelCanvas.blocksRaycasts = true;
+                StarCountAndShow();
+            });
         }
+
+        private void StarCountAndShow()
+        {
+            float _percentage = 100f - ((float)(GameManager.Instance.FailedAttempt<=0 ? 1 :GameManager.Instance.FailedAttempt) / (float)(GameManager.Instance.UniqueTilesVariation * 2f)) * 100f;
+            Debug.Log(_percentage);
+            Debug.Log("AA : GameManager.Instance.FailedAttempt  " + (float)GameManager.Instance.FailedAttempt + "(float)(GameManager.Instance.UniqueTilesVariation * 2f)" + (float)(GameManager.Instance.UniqueTilesVariation * 2f));
+
+            int _starGot = _percentage < 50f ? 1 : _percentage < 70f ? 2 : 3;
+            Debug.Log("AA : __starGot : " + _starGot);
+
+            switch (_starGot)
+            {
+                case 1:
+                    StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
+                    break;
+                case 2:
+                    StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
+                    StartCoroutine(Delay(() => { StarShow(1); }, 0.5f));
+                    break;
+                case 3:
+                    StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
+                    StartCoroutine(Delay(() => { StarShow(1); }, 0.5f));
+                    StartCoroutine(Delay(() => { StarShow(2); }, 0.75f));
+                    break;
+            }
+        }
+
+        private void StarShow(int x)
+        {
+            if(x >= 0 && x < starImages.Length)
+            {
+                starImages[x].sprite = starSprites[1];
+                if(AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.AudioChangeFunc(0, 0);
+                }
+            }
+        }
+
+        #region Button Func
 
         public void NextLevel(Action OnNextLevel = null)
         {
@@ -215,6 +256,13 @@ namespace GS.TilesMatch
             _sequence.Append(_img.DOColor(_color, 2f));
             _sequence.Append(_img.DOColor(_lastColor, 0.5f));
 
+        }
+
+        private IEnumerator Delay(Action taskToComplete, float duration = 1f)
+        {
+            yield return new WaitForSeconds(duration);
+            Debug.Log("Working");
+            taskToComplete();
         }
 
         private void Reset()

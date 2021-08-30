@@ -46,7 +46,10 @@ namespace GS.TilesMatch
 
         private int failedAttempt, uniqueTiles, countDownTimer;
 
+        int uniqueTilesVariation;
         public int UniqueTilesLeft { get { return uniqueTiles; } }
+        public int FailedAttempt { get { return failedAttempt; } }
+        public int UniqueTilesVariation { get { return uniqueTilesVariation; } }
 
         [HideInInspector] public bool IsPlay = true;
         [HideInInspector] public bool IsAbleToRefresh = false;
@@ -97,10 +100,10 @@ namespace GS.TilesMatch
             inputCounter = 0;
 
             IsPlay = false;
-            int _n = Random.Range(2, 7);
+            uniqueTilesVariation = 2;//Random.Range(2, 7);
             int _showTilesTime = 15;
 
-            uniqueTiles = _n * 2;
+            uniqueTiles = uniqueTilesVariation * 2;
             failedAttempt = 0;
 
             // Activate & Deactivate Rows According to level
@@ -108,7 +111,7 @@ namespace GS.TilesMatch
             {
                 for (int j = 0; j < gridItemRow0.Count; j++)
                 {
-                    if (i < _n)
+                    if (i < uniqueTilesVariation)
                     {
                         gridItemRows[i][j].gameObject.SetActive(true);
                         gridItemRows[i][j].transform.DOScale(1f, 0.5f);
@@ -121,7 +124,7 @@ namespace GS.TilesMatch
             }
 
             // Generate Tiles
-            GenerateLevel(_n);
+            GenerateLevel(uniqueTilesVariation);
             OnHideAllTiles?.Invoke(true);
 
             StartCoroutine(WaitTime(() =>
@@ -274,6 +277,9 @@ namespace GS.TilesMatch
                         tilesOne.ChangeBorderColorIndicatorColor(Color.red);
                         tilesTwo.ChangeBorderColorIndicatorColor(Color.red);
                         UI_Manager.Instance.SetWrongAttempt(failedAttempt.ToString());
+
+                        if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 2);
+
                     }, 1f));
 
                     StartCoroutine(WaitTime(() =>

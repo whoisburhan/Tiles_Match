@@ -7127,7 +7127,8 @@ MonoBehaviour:
   audioSource:
   - {fileID: 1257284355}
   backgroundClip: []
-  sounds: []
+  sounds:
+  - {fileID: 8300000, guid: 50b994086df7d694c94797da3adf9eee, type: 3}
 --- !u!1 &1505014443
 GameObject:
   m_ObjectHideFlags: 0

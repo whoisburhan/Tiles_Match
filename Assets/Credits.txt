@@ -3,3 +3,9 @@ Graphics:
 2. Lovepik.com
 4. https://icon-library.com/icon/hint-icon-1.html.html>Hint Icon # 151510
 5. <a href='https://www.freepik.com/vectors/frame'>Frame vector created by upklyak - www.freepik.com</a>
+
+
+Sound:
+1. https://freesound.org/people/JustinBW/sounds/80921/	Star Sound
+2. https://freesound.org/people/NenadSimic/sounds/171697/	Tiles Hit Sound
+3. https://freesound.org/people/Werra/sounds/232130/  MisMatched Tiles
