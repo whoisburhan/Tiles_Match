@@ -137,6 +137,7 @@ namespace GS.TilesMatch
 
         public void ShowHint(int _showTilesTime)
         {
+            UI_Manager.Instance.SetHitButtonVisibility(false);
             OnShowAllTiles?.Invoke(false);
             StartCoroutine(WaitTime(() => { OnHideAllTiles?.Invoke(false); }, 1.6f + _showTilesTime));
             StartCoroutine(WaitTime(() => { UI_Manager.Instance.CountDownTimerAnimation(_showTilesTime); }, 1f));
