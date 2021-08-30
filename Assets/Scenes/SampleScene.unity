@@ -6459,7 +6459,7 @@ RectTransform:
   m_GameObject: {fileID: 1368696291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1481359523}
   - {fileID: 1003069285}
@@ -6480,9 +6480,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368696291}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1368696294
 MonoBehaviour:
@@ -7919,6 +7919,7 @@ MonoBehaviour:
   smallTilesOne: {fileID: 3949041781417224577}
   smallTilesTwo: {fileID: 2090028461}
   PausePanelCanvas: {fileID: 405170512}
+  GameCompletePanelCanvas: {fileID: 1368696293}
   homeButton: {fileID: 0}
   shopButton: {fileID: 0}
   hintButton: {fileID: 1459747947}

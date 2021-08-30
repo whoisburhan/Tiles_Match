@@ -14,6 +14,14 @@ namespace GS.TilesMatch
         public static event Action<bool> OnShowAllTiles;
         public static event Action OnReset;
 
+        private const string Current_Level_No_Key = "CURRENT_LEVEL_NO_KEY";
+
+        public int CurrentLevelNo 
+        { 
+            get { return PlayerPrefs.GetInt(Current_Level_No_Key, 1); } 
+            set { PlayerPrefs.SetInt(Current_Level_No_Key, value); }
+        }
+
         [Header("Items Sprite")]
         [SerializeField] private List<Sprite> itemSprites = new List<Sprite>();
 
@@ -37,6 +45,8 @@ namespace GS.TilesMatch
         private GridItem tilesOne, tilesTwo;
 
         private int failedAttempt, uniqueTiles, countDownTimer;
+
+        public int UniqueTilesLeft { get { return uniqueTiles; } }
 
         [HideInInspector] public bool IsPlay = true;
         [HideInInspector] public bool IsAbleToRefresh = false;
@@ -79,7 +89,7 @@ namespace GS.TilesMatch
             }
         }
 
-        private void NewGame()
+        public void NewGame()
         {
             UI_Manager.Instance.SetHitButtonVisibility(false);
 

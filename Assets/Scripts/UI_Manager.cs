@@ -54,6 +54,14 @@ namespace GS.TilesMatch
             });
         }
 
+        private void CheckForLevelComplete()
+        {
+            if(GameManager.Instance.UniqueTilesLeft <= 0)
+            {
+                GameCompleteMenu();
+            }
+        }
+
         #region Button Func
 
         public void GameCompleteMenu()
@@ -72,6 +80,9 @@ namespace GS.TilesMatch
 
             GameCompletePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => { 
                 GameCompletePanelCanvas.blocksRaycasts = false;
+                GameManager.Instance.CurrentLevelNo++;
+                GameManager.Instance.NewGame();
+                OnNextLevel?.Invoke();
             });
         }
         public void Pause()
@@ -150,6 +161,7 @@ namespace GS.TilesMatch
                 uniqueTilesLeftText.text = _tilesText;
                 UI_Manager.Instance.SetHitButtonVisibility(true);
                 UI_Manager.Instance.SetRefreshButtonVisibility(true);
+                CheckForLevelComplete();
 
             }));
             smallTilesTwo.transform.DOMove(uniqueTilesLeftBorder.transform.position, .5f).OnComplete(() => {
