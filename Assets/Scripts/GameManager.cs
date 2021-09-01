@@ -106,6 +106,8 @@ namespace GS.TilesMatch
             uniqueTiles = uniqueTilesVariation * 2;
             failedAttempt = 0;
 
+            UI_Manager.Instance.SetTilesLeft(uniqueTiles.ToString());
+
             // Activate & Deactivate Rows According to level
             for (int i = 0; i < gridItemRows.Count; i++)
             {

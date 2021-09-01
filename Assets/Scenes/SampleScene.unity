@@ -22484,7 +22484,7 @@ MonoBehaviour:
   - {fileID: 1911870092}
   - {fileID: 696087289}
   - {fileID: 2112502207}
-  LevelCompleteParticleEffectCanvas: {fileID: 0}
+  LevelCompleteParticleEffectCanvas: {fileID: 1934783482}
 --- !u!114 &1757674349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 580307753184525265, guid: 824fa89a4ae2b594b8a8ecd49b786067, type: 3}

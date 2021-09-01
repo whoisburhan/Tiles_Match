@@ -281,7 +281,7 @@ namespace GS.TilesMatch
 
         private void Reset()
         {
-            uniqueTilesLeftText.text = wrongAttemptText.text = "0";
+             wrongAttemptText.text = "0";
         }
 
     }
