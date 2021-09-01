@@ -34,6 +34,9 @@ namespace GS.TilesMatch
         [SerializeField] private Sprite[] starSprites;
         [SerializeField] private Image[] starImages;
 
+        [Header("Particle Effect")]
+        [SerializeField] private GameObject LevelCompleteParticleEffectCanvas;
+
         private void Awake()
         {
             Instance = this;
@@ -94,18 +97,27 @@ namespace GS.TilesMatch
             {
                 case 1:
                     StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
-                    StartCoroutine(Delay(()=> { if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4); },0.5f));
+                    StartCoroutine(Delay(()=> { 
+                        if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4);
+                        LevelCompleteParticleEffectCanvas.SetActive(true);
+                    },0.5f));
                     break;
                 case 2:
                     StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
                     StartCoroutine(Delay(() => { StarShow(1); }, 0.5f));
-                    StartCoroutine(Delay(() => { if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4); }, 0.75f));
+                    StartCoroutine(Delay(() => { 
+                        if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4);
+                        LevelCompleteParticleEffectCanvas.SetActive(true);
+                    }, 0.75f));
                     break;
                 case 3:
                     StartCoroutine(Delay(() => { StarShow(0); }, 0.25f));
                     StartCoroutine(Delay(() => { StarShow(1); }, 0.5f));
                     StartCoroutine(Delay(() => { StarShow(2); }, 0.75f));
-                    StartCoroutine(Delay(() => { if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4); }, 1.0f));
+                    StartCoroutine(Delay(() => { 
+                        if (AudioManager.Instance != null) AudioManager.Instance.AudioChangeFunc(0, 4);
+                        LevelCompleteParticleEffectCanvas.SetActive(true);
+                    }, 1.0f));
                     break;
             }
         }
@@ -123,6 +135,7 @@ namespace GS.TilesMatch
 
         public void NextLevel(Action OnNextLevel = null)
         {
+            LevelCompleteParticleEffectCanvas.SetActive(false);
             GameCompletePanelCanvas.DOFade(0f, 0.3f);
 
             GameCompletePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => { 
