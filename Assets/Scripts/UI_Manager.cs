@@ -11,6 +11,10 @@ namespace GS.TilesMatch
     {
         public static UI_Manager Instance { get; private set; }
 
+        [Header("CANVAS")]
+        public GameObject StartCanvas;
+        public GameObject GameplayCanvas;
+
         [Header("All Text File")]
         [SerializeField] private Text uniqueTilesLeftText;
         [SerializeField] private Text wrongAttemptText;

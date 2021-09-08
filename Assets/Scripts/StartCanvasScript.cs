@@ -22,11 +22,35 @@ namespace GS.TilesMatch
             Sequence _sequence = DOTween.Sequence();
             _sequence.Append(PlayButton.DOScale(new Vector3(1.1f, 1.1f, 1.1f),.85f));
             _sequence.Append(PlayButton.DOScale(Vector3.one, .15f));
+
+            LeftSideButtonPositions[0].DOMove(LeftSideButtonPositions[2].position, 1f);
+
+            RightSideButtonPositions[0].DOMove(RightSideButtonPositions[2].position, 1f);
+
         }
 
-        public void StartCanvasClosingAnimationFunc()
+
+        private void Start()
         {
-
+            PlayButton.GetComponent<Button>().onClick.AddListener(()=> 
+            {
+                StartCanvasClosingAnimationFunc();
+            });
         }
+
+        private void StartCanvasClosingAnimationFunc()
+        {
+            GameTittlePositions[0].DOMove(GameTittlePositions[1].position, 1f);
+            LeftSideButtonPositions[0].DOMove(LeftSideButtonPositions[1].position, 1f);
+            RightSideButtonPositions[0].DOMove(RightSideButtonPositions[1].position, 1f);
+
+            PlayButton.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 1f).OnComplete(()=> 
+            {
+                UI_Manager.Instance.GameplayCanvas.SetActive(true);
+                GameManager.Instance.NewGame();
+                UI_Manager.Instance.StartCanvas.SetActive(false);
+            });
+        }
+
     }
 }
