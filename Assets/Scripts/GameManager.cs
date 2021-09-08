@@ -73,7 +73,7 @@ namespace GS.TilesMatch
             gridItemRows.Add(gridItemRow4);
             gridItemRows.Add(gridItemRow5);
 
-            Refresh();
+            //Refresh();
 
             /*StartCoroutine(WaitTime(() =>
            {
