@@ -17,6 +17,8 @@ namespace GS.TilesMatch
 
         private void OnEnable()
         {
+            if (AudioManager.Instance != null) AudioManager.Instance.BackgroundAudioFunc(0);
+
             GameTittlePositions[0].DOMove(GameTittlePositions[2].position, 1f);
 
             Sequence _sequence = DOTween.Sequence();
@@ -47,8 +49,10 @@ namespace GS.TilesMatch
             PlayButton.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 1f).OnComplete(()=> 
             {
                 UI_Manager.Instance.GameplayCanvas.SetActive(true);
-                GameManager.Instance.NewGame();
+                GameManager.Instance.Refresh();
                 UI_Manager.Instance.StartCanvas.SetActive(false);
+
+                if (AudioManager.Instance != null) AudioManager.Instance.StopBackgroundMusic();
             });
         }
 

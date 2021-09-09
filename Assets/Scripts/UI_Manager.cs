@@ -32,7 +32,7 @@ namespace GS.TilesMatch
         [SerializeField] private CanvasGroup GameCompletePanelCanvas;
 
         [Header("Buttons")]
-        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton;
+        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton,backToMainMenuButton, rateButton;
 
         [Header("Star Image")]
         [SerializeField] private Sprite[] starSprites;
@@ -40,6 +40,8 @@ namespace GS.TilesMatch
 
         [Header("Particle Effect")]
         [SerializeField] private GameObject LevelCompleteParticleEffectCanvas;
+
+        private bool isCountDownTimerActivated = true;
 
         private void Awake()
         {
@@ -65,6 +67,8 @@ namespace GS.TilesMatch
             });
 
             nextLevelButton.onClick.AddListener(()=> { NextLevel(); });
+
+            backToMainMenuButton.onClick.AddListener(() => { ReturnToMainMenu(); });
         }
 
         private void CheckForLevelComplete()
@@ -178,6 +182,20 @@ namespace GS.TilesMatch
             GameManager.Instance.ShowHint(5);
         }
 
+
+        public void ReturnToMainMenu()
+        {
+            ResetCountDownTimerAnimation();
+            PausePanelCanvas.DOFade(0f, 0.3f);
+
+            PausePanelCanvas.transform.DOScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f).OnComplete(() => 
+            {
+                PausePanelCanvas.blocksRaycasts = false;
+                GameplayCanvas.SetActive(false);
+                StartCanvas.SetActive(true);
+            });
+        }
+
         #endregion
 
 
@@ -200,22 +218,34 @@ namespace GS.TilesMatch
         }
         public void CountDownTimerAnimation(int _countDownTime)
         {
-            countDownTimerText.gameObject.SetActive(true);
-            if (_countDownTime > 0)
+            if (isCountDownTimerActivated)
             {
-                countDownTimerText.text = _countDownTime.ToString();
-                countDownTimerText.transform.DOScale(Vector3.one, 1f).OnComplete(() =>
+                countDownTimerText.gameObject.SetActive(true);
+                if (_countDownTime > 0)
                 {
-                    countDownTimerText.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                    _countDownTime--;
-                    CountDownTimerAnimation(_countDownTime);
+                    countDownTimerText.text = _countDownTime.ToString();
+                    countDownTimerText.transform.DOScale(Vector3.one, 1f).OnComplete(() =>
+                    {
+                        countDownTimerText.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                        _countDownTime--;
+                        CountDownTimerAnimation(_countDownTime);
 
-                });
+                    });
+                }
+                else
+                {
+                    countDownTimerText.gameObject.SetActive(false);
+                }
             }
             else
             {
-                countDownTimerText.gameObject.SetActive(false);
+                isCountDownTimerActivated = true;
             }
+        }
+
+        public void ResetCountDownTimerAnimation()
+        {
+            isCountDownTimerActivated = false;
         }
 
         public void SetTilesLeft(string _tilesText, Transform _fromOne, Transform _fromTwo)

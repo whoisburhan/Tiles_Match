@@ -73,6 +73,8 @@ namespace GS.TilesMatch
             gridItemRows.Add(gridItemRow4);
             gridItemRows.Add(gridItemRow5);
 
+            if (AudioManager.Instance != null) AudioManager.Instance.BackgroundAudioFunc(0);
+
             //Refresh();
 
             /*StartCoroutine(WaitTime(() =>
@@ -94,6 +96,8 @@ namespace GS.TilesMatch
 
         public void NewGame()
         {
+            StopAllCoroutines();
+
             UI_Manager.Instance.SetHitButtonVisibility(false);
 
             tilesOne = tilesTwo = null;
