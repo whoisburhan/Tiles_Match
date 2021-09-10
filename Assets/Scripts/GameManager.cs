@@ -18,8 +18,16 @@ namespace GS.TilesMatch
 
         public int CurrentLevelNo 
         { 
-            get { return PlayerPrefs.GetInt(Current_Level_No_Key, 1); } 
-            set { PlayerPrefs.SetInt(Current_Level_No_Key, value); }
+            get
+            {
+                UI_Manager.Instance.SetLevelNoInUI(PlayerPrefs.GetInt(Current_Level_No_Key, 1));
+                return PlayerPrefs.GetInt(Current_Level_No_Key, 1); 
+            } 
+            set 
+            {
+                PlayerPrefs.SetInt(Current_Level_No_Key, value);
+                UI_Manager.Instance.SetLevelNoInUI(value);
+            }
         }
 
         [Header("Items Sprite")]
@@ -94,6 +102,15 @@ namespace GS.TilesMatch
             }
         }
 
+        private int TilesAmountDecider()
+        {
+            int _currentLevel = CurrentLevelNo;
+            if (_currentLevel <= 3) return 2;
+            else if (_currentLevel <= 7) return 3;
+            else if (_currentLevel <= 15) return Random.Range(2, 5);
+            else if (_currentLevel <= 25) return Random.Range(2, 6);
+            else return Random.Range(2, 7);
+        }
         public void NewGame()
         {
             StopAllCoroutines();
@@ -104,7 +121,7 @@ namespace GS.TilesMatch
             inputCounter = 0;
 
             IsPlay = false;
-            uniqueTilesVariation = 2;//Random.Range(2, 7);
+            uniqueTilesVariation = TilesAmountDecider();//2;//Random.Range(2, 7);
             int _showTilesTime = 15;
 
             uniqueTiles = uniqueTilesVariation * 2;

@@ -19,6 +19,7 @@ namespace GS.TilesMatch
         [SerializeField] private Text uniqueTilesLeftText;
         [SerializeField] private Text wrongAttemptText;
         [SerializeField] private Text countDownTimerText;
+        [SerializeField] private Text levelNoText;
 
         [Header("Tiles Border")]
         [SerializeField] private Image uniqueTilesLeftBorder;
@@ -140,6 +141,11 @@ namespace GS.TilesMatch
         }
 
         #region Button Func
+
+        public void SetLevelNoInUI(int currentLevelNo)
+        {
+            levelNoText.text = "Level - " + currentLevelNo.ToString();
+        }
 
         public void NextLevel(Action OnNextLevel = null)
         {

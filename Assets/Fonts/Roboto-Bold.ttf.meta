@@ -3,14 +3,15 @@ guid: de2f778096229ea46affd289ab62fe35
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
+  fontSize: 300
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
   - Roboto
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 77291314683880e408474db51f1aa27b, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
