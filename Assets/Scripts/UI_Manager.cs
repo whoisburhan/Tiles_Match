@@ -38,7 +38,7 @@ namespace GS.TilesMatch
         [SerializeField] private CanvasGroup GameCompletePanelCanvas;
 
         [Header("Buttons")]
-        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton,backToMainMenuButton, rateButton, eventButton, settingsButton;
+        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton,backToMainMenuButton, rateButton, eventButton, settingsButton , pauseMenuShopButton, aboutUsButton;
 
         [Header("Star Image")]
         [SerializeField] private Sprite[] starSprites;
@@ -66,6 +66,10 @@ namespace GS.TilesMatch
 
         private void Start()
         {
+            homeButton.onClick.AddListener(() => { Pause(); });
+
+            shopButton.onClick.AddListener(() => { ComingSoonFunc(); });
+
             hintButton.onClick.AddListener(() => { Hint(); });
             retryButton.onClick.AddListener(() => 
             {
@@ -78,6 +82,9 @@ namespace GS.TilesMatch
 
             settingsButton.onClick.AddListener(() => { ComingSoonFunc(); });
             eventButton.onClick.AddListener(() => { ComingSoonFunc(); });
+
+            pauseMenuShopButton.onClick.AddListener(() => { ComingSoonFunc(); });
+            aboutUsButton.onClick.AddListener(() => { ComingSoonFunc(); });
         }
 
         private void CheckForLevelComplete()
