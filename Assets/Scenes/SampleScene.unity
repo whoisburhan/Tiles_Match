@@ -593,7 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shine: {fileID: 108034530}
   offset: 200
-  speed: 0.7
+  speed: 0.5
   minDelay: 2
   maxDelay: 2
   inYDirection: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.30588236}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.11764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19888,7 +19888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shine: {fileID: 917075229}
   offset: 200
-  speed: 0.7
+  speed: 0.5
   minDelay: 2
   maxDelay: 2
   inYDirection: 0
@@ -19905,7 +19905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.30588236}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.11764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21385,7 +21385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shine: {fileID: 1148403797}
   offset: 200
-  speed: 0.7
+  speed: 0.5
   minDelay: 2
   maxDelay: 2
   inYDirection: 0
@@ -21402,7 +21402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.30588236}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.11764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
