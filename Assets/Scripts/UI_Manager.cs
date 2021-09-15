@@ -11,6 +11,11 @@ namespace GS.TilesMatch
     {
         public static UI_Manager Instance { get; private set; }
 
+        [Header("Coming Soon Canvas")]
+        [SerializeField] private CanvasGroup comingSoonCanvasGrp;
+        [SerializeField] private Transform[] comingSoonPanelPositions;
+
+
         [Header("CANVAS")]
         public GameObject StartCanvas;
         public GameObject GameplayCanvas;
@@ -33,7 +38,7 @@ namespace GS.TilesMatch
         [SerializeField] private CanvasGroup GameCompletePanelCanvas;
 
         [Header("Buttons")]
-        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton,backToMainMenuButton, rateButton;
+        [SerializeField] private Button homeButton, shopButton, hintButton, retryButton,nextLevelButton,backToMainMenuButton, rateButton, eventButton, settingsButton;
 
         [Header("Star Image")]
         [SerializeField] private Sprite[] starSprites;
@@ -70,6 +75,9 @@ namespace GS.TilesMatch
             nextLevelButton.onClick.AddListener(()=> { NextLevel(); });
 
             backToMainMenuButton.onClick.AddListener(() => { ReturnToMainMenu(); });
+
+            settingsButton.onClick.AddListener(() => { ComingSoonFunc(); });
+            eventButton.onClick.AddListener(() => { ComingSoonFunc(); });
         }
 
         private void CheckForLevelComplete()
@@ -202,6 +210,22 @@ namespace GS.TilesMatch
             });
         }
 
+
+        public void ComingSoonFunc()
+        {
+            comingSoonCanvasGrp.blocksRaycasts = true;
+            Sequence _sequence = DOTween.Sequence();
+            _sequence.Append(comingSoonCanvasGrp.DOFade(1, 0.5f));
+            _sequence.Append(comingSoonPanelPositions[0].DOMove(comingSoonPanelPositions[2].position, 1f));
+            _sequence.AppendInterval(1f);
+            _sequence.Append(comingSoonPanelPositions[0].DOMove(comingSoonPanelPositions[1].position, 1f));
+            _sequence.Append(comingSoonCanvasGrp.DOFade(0, 0.5f)).OnComplete(()=> 
+            {
+                comingSoonCanvasGrp.blocksRaycasts = false;
+            });
+            
+
+        }
         #endregion
 
 
